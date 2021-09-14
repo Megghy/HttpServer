@@ -32,6 +32,7 @@ namespace HTTPServerLib
             this.Content = content;
             this.Encoding = encoding != null ? encoding : Encoding.UTF8;
             this.Content_Length = content.Length.ToString();
+
             return this;
         }
 
@@ -80,7 +81,8 @@ namespace HTTPServerLib
 
             if (!string.IsNullOrEmpty(this.Content_Type))
                 builder.AppendLine("Content-Type:" + this.Content_Type);
-
+            //顺便把length也加上吧
+            builder.AppendLine("Content-Length:" + Content_Length);
             //这里不添加header我是没想到的
             foreach (KeyValuePair<string, string> kv in Headers)
                 builder.AppendLine(kv.Key + ":" + kv.Value);

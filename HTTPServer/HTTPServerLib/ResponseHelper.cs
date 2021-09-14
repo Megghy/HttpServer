@@ -10,9 +10,9 @@ namespace HTTPServerLib
 {
     public static class ResponseHelper
     {
-        public static HttpResponse FromFile(this HttpResponse response, string fileName)
+        public static HttpResponse FromFile(this HttpResponse response, string filePath, string fileName)
         {
-            if (!File.Exists(fileName))
+            if (!File.Exists(filePath))
             {
                 response.SetContent("<html><body><h1>404 - Not Found</h1></body></html>");
                 response.StatusCode = "404";
@@ -20,11 +20,12 @@ namespace HTTPServerLib
                 return response;
             }
 
-            var content = File.ReadAllBytes(fileName);
-            var contentType = GetMimeFromFile(fileName);
+            var content = File.ReadAllBytes(filePath);
+            var contentType = GetMimeFromFile(filePath);
             response.SetContent(content);
             response.Content_Type = contentType;
             response.StatusCode = "200";
+            response.Headers.Add("Content-Disposition", $"attachment; filename={fileName};filename*={fileName}"); //添加可以选择保存文件名
             return response;
         }
 
