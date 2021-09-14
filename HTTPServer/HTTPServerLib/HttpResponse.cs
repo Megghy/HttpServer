@@ -80,6 +80,11 @@ namespace HTTPServerLib
 
             if (!string.IsNullOrEmpty(this.Content_Type))
                 builder.AppendLine("Content-Type:" + this.Content_Type);
+
+            //这里不添加header我是没想到的
+            foreach (KeyValuePair<string, string> kv in Headers)
+                builder.AppendLine(kv.Key + ":" + kv.Value);
+
             return builder.ToString();
         }
 
