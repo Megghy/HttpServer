@@ -29,7 +29,7 @@ namespace HTTPServerLib
         {
             var fieldName = header.GetDescription();
             if (fieldName == null) return null;
-            if (Headers.ContainsKey(fieldName)) return null;
+            if (!Headers.ContainsKey(fieldName)) return null;
             return Headers[fieldName];
         }
 
