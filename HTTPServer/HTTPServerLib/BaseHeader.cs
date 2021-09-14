@@ -28,14 +28,14 @@ namespace HTTPServerLib
         protected string GetHeaderByKey(Enum header)
         {
             var fieldName = header.GetDescription();
-            if (fieldName == null || Headers == null) return null;
+            if (fieldName == null) return null;
             if (Headers.ContainsKey(fieldName)) return null;
             return Headers[fieldName];
         }
 
         protected string GetHeaderByKey(string fieldName)
         {
-            if (string.IsNullOrEmpty(fieldName) || Headers == null) return null;
+            if (string.IsNullOrEmpty(fieldName)) return null;
             if (!Headers.ContainsKey(fieldName)) return null;
             return Headers[fieldName];
         }

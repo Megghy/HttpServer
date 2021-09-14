@@ -59,7 +59,7 @@ namespace HTTPServerLib
             if (first.Length > 2) this.ProtocolVersion = first[2];
 
             //Request Headers
-            this.Headers = GetRequestHeaders(rows);
+            this.Headers = GetRequestHeaders(rows) ?? new();
 
             //Request Body
             Body = GetRequestBody(rows);
